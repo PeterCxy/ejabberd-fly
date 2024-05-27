@@ -1,0 +1,27 @@
+# fly.toml app configuration file generated for ejabberd-test on 2024-05-24T15:25:11-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'ejabberd-test'
+primary_region = 'yyz'
+
+[[services]]
+  internal_port = 5222
+  protocol = "tcp"
+  auto_stop_machines = false
+  auto_start_machines = false
+  min_machines_running = 1
+  processes = ['app']
+
+  [[services.ports]]
+    port = 5222
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[mounts]
+  source = "ejabberd_db"
+  destination = "/home/ejabberd/database"
